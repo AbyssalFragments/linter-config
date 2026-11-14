@@ -1,0 +1,54 @@
+{
+  "name": "@abyssalfragments/linter-config",
+  "version": "1.0.0",
+  "description": "Abyssal Fragments shared linter config (eslint, prettier, etc)",
+  "bugs": {
+    "url": "https://git.abyssalfragments.org/packages/linter-config/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Lillith Rose",
+    "email": "lillithrose@abyssalfragments.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.abyssalfragments.org/packages/linter-config"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . && oxfmt --check",
+    "fix": "eslint . --fix",
+    "format": "oxfmt",
+    "lint:dev": "npm run build && npm run lint"
+  },
+  "dependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-simple-header": "1.2.2",
+    "eslint-plugin-unused-imports": "4.4.1",
+    "globals": "17.14.0",
+    "typescript-eslint": "8.72.2"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "eslint": "10.15.0",
+    "oxfmt": "^0.78.0",
+    "tsdown": "0.23.7",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "eslint": "^10.0.0",
+    "oxfmt": "^0.78.0"
+  }
+}
