@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.abyssalfragments.org/packages/linter-config"
+    "url": "https://github.com/AbyssalFragments/linter-config"
   },
   "files": [
     "dist"
