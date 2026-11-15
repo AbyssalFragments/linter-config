@@ -20,5 +20,7 @@ export default function oxfmt(config: OxfmtConfig = defaultConfig) {
     ],
     tabWidth: config.rumiMode ? 4 : 2,
     useTabs: config.rumiMode,
+    astro: true,
+    svelte: true,
   });
 }

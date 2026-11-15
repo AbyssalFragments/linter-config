@@ -48,7 +48,17 @@
     "typescript": "6.0.3"
   },
   "peerDependencies": {
+    "@astrojs/compiler-rs": "^0.5.0",
     "eslint": "^10.0.0",
-    "oxfmt": "^0.78.0"
+    "oxfmt": "^0.78.0",
+    "svelte": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@astrojs/compiler-rs": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
   }
 }
