@@ -6,5 +6,6 @@
 import eslint from "./eslint";
 import { SharedLicense } from "./license";
 import oxfmt from "./oxfmt";
+import oxlint from "./oxlint";
 
-export { eslint, oxfmt, SharedLicense };
+export { eslint, oxlint, oxfmt, SharedLicense };
