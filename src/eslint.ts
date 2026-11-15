@@ -12,18 +12,17 @@ import header from "eslint-plugin-simple-header";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 import { Licenses, type SharedLicense } from "./license";
 
-type EslintConfigLicense =
-  | {
-      text: string | string[];
-    }
-  | {
-      file: string;
-    }
-  | {
-      shared: SharedLicense;
-    };
 export type EslintConfig = {
-  license?: EslintConfigLicense;
+  license?:
+    | {
+        text: string | string[];
+      }
+    | {
+        file: string;
+      }
+    | {
+        shared: SharedLicense;
+      };
 };
 
 const defaultConfig: EslintConfig = Object.freeze({});
@@ -64,11 +63,12 @@ export default function eslint(config: EslintConfig = defaultConfig) {
             }
           : {}),
         "no-undef": "off",
-        "@typescript-eslint/no-unused-vars": "off",
         "no-redeclare": "off",
         "@typescript-eslint/no-redeclare": "error",
-        "no-unused-vars": "off",
         "unused-imports/no-unused-imports": "error",
+        // see: https://www.npmjs.com/package/eslint-plugin-unused-imports
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "off",
         "unused-imports/no-unused-vars": [
           "warn",
           {
@@ -79,7 +79,7 @@ export default function eslint(config: EslintConfig = defaultConfig) {
           },
         ],
 
-        // Discord.js stuff
+        // discord.js stuff
         "no-restricted-imports": [
           "error",
           {
