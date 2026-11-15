@@ -6,6 +6,7 @@
 import { defineConfig, type OxlintEnv } from "oxlint";
 import { Licenses, type SharedLicense } from "./license";
 import { sharedIgnores, type SharedConfig } from "./shared";
+import { abort } from "node:process";
 
 export type OxlintConfig = SharedConfig & {
   license?:

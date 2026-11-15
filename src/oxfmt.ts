@@ -22,5 +22,9 @@ export default function oxfmt(config: OxfmtConfig = defaultConfig) {
     useTabs: config.rumiMode,
     astro: true,
     svelte: true,
+    sortImports: true,
+    sortPackageJson: true,
+    sortTailwindcss: true,
+    jsdoc: true,
   });
 }
