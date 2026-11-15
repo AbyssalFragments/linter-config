@@ -4,9 +4,9 @@
  */
 
 import js from "@eslint/js";
+import ts from "typescript-eslint";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
-import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
 import header from "eslint-plugin-simple-header";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
@@ -33,7 +33,6 @@ export default function eslint(config: EslintConfig = defaultConfig) {
       ...(config.extraIgnores ? config.extraIgnores : []),
       ...sharedIgnores.map((i) => `${i}/*`),
     ]),
-    tseslint.configs.recommended,
     {
       files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
       plugins: {
@@ -41,7 +40,7 @@ export default function eslint(config: EslintConfig = defaultConfig) {
         "unused-imports": unusedImports,
         header: header,
       },
-      extends: [js.configs.recommended, eslintConfigPrettier],
+      extends: [js.configs.recommended, eslintConfigPrettier, ts.configs.recommended],
       languageOptions: {
         globals: {
           ...globals.node,
