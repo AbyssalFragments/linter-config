@@ -11,8 +11,9 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import header from "eslint-plugin-simple-header";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 import { Licenses, type SharedLicense } from "./license";
+import { sharedIgnores, type SharedConfig } from "./shared";
 
-export type EslintConfig = {
+export type EslintConfig = SharedConfig & {
   license?:
     | {
         text: string | string[];
@@ -28,7 +29,10 @@ export type EslintConfig = {
 const defaultConfig: EslintConfig = Object.freeze({});
 export default function eslint(config: EslintConfig = defaultConfig) {
   return defineConfig([
-    globalIgnores(["dist/*"]),
+    globalIgnores([
+      ...(config.extraIgnores ? config.extraIgnores : []),
+      ...sharedIgnores.map((i) => `${i}/*`),
+    ]),
     tseslint.configs.recommended,
     {
       files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],

@@ -4,8 +4,9 @@
  */
 
 import { defineConfig } from "oxfmt";
+import { sharedIgnores, type SharedConfig } from "./shared";
 
-export type OxfmtConfig = {
+export type OxfmtConfig = SharedConfig & {
   /** Uses tabs over spaces */
   rumiMode?: boolean;
 };
@@ -13,7 +14,10 @@ export type OxfmtConfig = {
 const defaultConfig: OxfmtConfig = Object.freeze({});
 export default function oxfmt(config: OxfmtConfig = defaultConfig) {
   return defineConfig({
-    ignorePatterns: ["dist/**/*"],
+    ignorePatterns: [
+      ...(config.extraIgnores ? config.extraIgnores : []),
+      ...sharedIgnores.map((i) => `${i}/**/*`),
+    ],
     tabWidth: config.rumiMode ? 4 : 2,
     useTabs: config.rumiMode,
   });
