@@ -18,7 +18,6 @@ type EslintConfigLicense =
       file: string;
     };
 export type EslintConfig = {
-  discord?: boolean;
   license?: EslintConfigLicense;
 };
 
@@ -69,29 +68,27 @@ export default function eslint(config: EslintConfig = defaultConfig) {
             argsIgnorePattern: "^_",
           },
         ],
-        ...(config.discord
-          ? {
-              "no-restricted-imports": [
-                "error",
-                {
-                  paths: [
-                    {
-                      name: "discord.js",
-                      importNames: ["Colors"],
-                      message: "Use StyledColors instead",
-                    },
-                  ],
-                },
-              ],
-              "no-restricted-syntax": [
-                "error",
-                {
-                  selector: "Literal[raw=/^0x/i]",
-                  message: "Use StyledColors instead",
-                },
-              ],
-            }
-          : {}),
+
+        // Discord.js stuff
+        "no-restricted-imports": [
+          "error",
+          {
+            paths: [
+              {
+                name: "discord.js",
+                importNames: ["Colors"],
+                message: "Use StyledColors instead",
+              },
+            ],
+          },
+        ],
+        "no-restricted-syntax": [
+          "error",
+          {
+            selector: "Literal[raw=/^0x/i]",
+            message: "Use StyledColors instead",
+          },
+        ],
       },
     },
   ]);
