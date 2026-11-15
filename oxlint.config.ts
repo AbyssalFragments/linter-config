@@ -12,6 +12,7 @@ export default defineConfig({
       license: {
         shared: SharedLicense.MIT,
       },
+      extraIgnores: ["src/plugins/header.ts"],
     }),
   ],
 });

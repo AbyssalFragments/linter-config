@@ -3,8 +3,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { abort } from "node:process";
-
 import { defineConfig, type OxlintEnv } from "oxlint";
 
 import { Licenses, type SharedLicense } from "./license";
@@ -38,7 +36,7 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
       config.license
         ? {
             name: "header",
-            specifier: "eslint-plugin-simple-header",
+            specifier: "@abyssalfragments/linter-config/plugins/header",
           }
         : null,
     ].filter((i) => i !== null),
@@ -51,22 +49,24 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
         ? {
             "header/header": [
               "error",
-              "file" in config.license
-                ? {
-                    files: [config.license.file],
-                  }
-                : {
-                    text:
-                      "shared" in config.license
-                        ? Licenses[config.license.shared]
-                        : config.license.text,
-                  },
+              {
+                allowIndent: true,
+                ...("file" in config.license
+                  ? {
+                      files: [config.license.file],
+                    }
+                  : {
+                      text:
+                        "shared" in config.license
+                          ? Licenses[config.license.shared]
+                          : config.license.text,
+                    }),
+              },
             ],
           }
         : {}),
       "no-undef": "off",
       "no-redeclare": "error",
-      // see: https://www.npmjs.com/package/eslint-plugin-unused-imports
       "no-unused-vars": [
         "warn",
         {

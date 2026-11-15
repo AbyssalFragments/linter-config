@@ -5,13 +5,13 @@
 
 import js from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
-import header from "eslint-plugin-simple-header";
 import unusedImports from "eslint-plugin-unused-imports";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import ts from "typescript-eslint";
 
 import { Licenses, type SharedLicense } from "./license";
+import header from "./plugins/header";
 import { sharedIgnores, type SharedConfig } from "./shared";
 
 export type EslintConfig = SharedConfig & {
