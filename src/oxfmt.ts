@@ -4,6 +4,7 @@
  */
 
 import { defineConfig } from "oxfmt";
+
 import { sharedIgnores, type SharedConfig } from "./shared";
 
 export type OxfmtConfig = SharedConfig & {

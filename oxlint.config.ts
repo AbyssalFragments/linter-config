@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { defineConfig } from "oxlint";
 import { oxlint, SharedLicense } from "@abyssalfragments/linter-config";
+import { defineConfig } from "oxlint";
 
 export default defineConfig({
   extends: [
