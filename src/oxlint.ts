@@ -76,6 +76,7 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
           argsIgnorePattern: "^_",
         },
       ],
+      "unicorn/no-empty-file": "off",
 
       // discord.js stuff
       "no-restricted-imports": [
