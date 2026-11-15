@@ -10,12 +10,17 @@ import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
 import header from "eslint-plugin-simple-header";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import { Licenses, type SharedLicense } from "./license";
+
 type EslintConfigLicense =
   | {
       text: string | string[];
     }
   | {
       file: string;
+    }
+  | {
+      shared: SharedLicense;
     };
 export type EslintConfig = {
   license?: EslintConfigLicense;
@@ -49,7 +54,12 @@ export default function eslint(config: EslintConfig = defaultConfig) {
                   ? {
                       files: [config.license.file],
                     }
-                  : { text: config.license.text },
+                  : {
+                      text:
+                        "shared" in config.license
+                          ? Licenses[config.license.shared]
+                          : config.license.text,
+                    },
               ],
             }
           : {}),
