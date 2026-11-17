@@ -21,6 +21,7 @@
   "exports": {
     ".": "./dist/index.mjs",
     "./plugins/header": "./dist/plugins/header.mjs",
+    "./plugins/lillith": "./dist/plugins/lillith.mjs",
     "./package.json": "./package.json"
   },
   "scripts": {

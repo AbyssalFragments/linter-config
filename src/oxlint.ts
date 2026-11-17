@@ -26,12 +26,16 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
   return defineConfig({
     ignorePatterns: [
       ...(config.extraIgnores ? config.extraIgnores : []),
-      ...sharedIgnores.map((i) => `${i}/*`),
+      ...sharedIgnores.map((ignore) => `${ignore}/*`),
     ],
     jsPlugins: [
       {
         name: "eslint-js",
         specifier: "oxlint-plugin-eslint",
+      },
+      {
+        name: "lillith",
+        specifier: "@abyssalfragments/linter-config/plugins/lillith",
       },
       config.license
         ? {
@@ -39,7 +43,7 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
             specifier: "@abyssalfragments/linter-config/plugins/header",
           }
         : null,
-    ].filter((i) => i !== null),
+    ].filter((plugin) => plugin !== null),
     env: config.env ?? {
       node: true,
       es6: true,
@@ -77,6 +81,8 @@ export default function oxlint(config: OxlintConfig = defaultConfig) {
         },
       ],
       "unicorn/no-empty-file": "off",
+
+      "lillith/no-lambda-i": "error",
 
       // discord.js stuff
       "no-restricted-imports": [

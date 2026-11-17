@@ -32,7 +32,7 @@ export default function eslint(config: EslintConfig = defaultConfig) {
   return defineConfig([
     globalIgnores([
       ...(config.extraIgnores ? config.extraIgnores : []),
-      ...sharedIgnores.map((i) => `${i}/*`),
+      ...sharedIgnores.map((ignore) => `${ignore}/*`),
     ]),
     {
       files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],

@@ -17,7 +17,7 @@ export default function oxfmt(config: OxfmtConfig = defaultConfig) {
   return defineConfig({
     ignorePatterns: [
       ...(config.extraIgnores ? config.extraIgnores : []),
-      ...sharedIgnores.map((i) => `${i}/**/*`),
+      ...sharedIgnores.map((ignore) => `${ignore}/**/*`),
     ],
     tabWidth: config.rumiMode ? 4 : 2,
     useTabs: config.rumiMode,
@@ -27,5 +27,6 @@ export default function oxfmt(config: OxfmtConfig = defaultConfig) {
     sortPackageJson: true,
     sortTailwindcss: true,
     jsdoc: true,
+    endOfLine: "lf",
   });
 }
