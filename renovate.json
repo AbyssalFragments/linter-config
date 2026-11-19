@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "infra/renovate//presets/js"
+  ],
+  "packageRules": [
+    {
+      "description": "Wait 1 day before bumping linters",
+      "internalChecksFilter": "strict",
+      "matchPackageNames": [
+        "oxlint",
+        "oxfmt",
+        "eslint"
+      ],
+      "minimumReleaseAge": "1 day",
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false
+    }
   ]
 }
